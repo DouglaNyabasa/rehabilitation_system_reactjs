@@ -7,14 +7,16 @@ import heroImg03 from "../../assets/images/hero-img03.png";
 import icon02 from "../../assets/images/icon02.png";
 import icon03 from "../../assets/images/icon03.png";
 import icon01 from "../../assets/images/icon01.png";
-import { BsArrowRight } from "react-icons/bs";
+import { BsArrowRight, BsFillArrowRightCircleFill } from "react-icons/bs";
 import About from "../../components/About";
 import ServicesList from "../../components/ServicesList";
-import Video3 from "../../assets/video1.mp4";
-import DoctorsList from "../../components/DoctorsList"
+
 import faqImg from "../../assets/images/faq-img.png";
 import FaqList from "../Faq/FaqList";
 import Testimonials from "../../Testimonials/Testimonials";
+import { assets } from "../../assets/assets_frontend/assets";
+import TopDoctors from "./TopDoctors";
+import Barner from "../../components/Barner";
 
 const Home = () => {
   return (
@@ -35,7 +37,8 @@ const Home = () => {
                   recognized us as one of the best Drug rehabilitation hospital
                   in Zimbabwe and SADC with a positive recovery rate of 92%
                 </p>
-                <button className="btn">Request Appointment</button>
+               
+                <button className=" mt-3 flex items-center px-8 py-3 rounded-full text-white text-sm m-auto md:m-0 hover:scale-105 transition-all duration-300 gap-2 bg-blue-600 ">Request Appointment <BsFillArrowRightCircleFill/></button>
               </div>
               {/* ================hero section============== */}
 
@@ -203,20 +206,10 @@ const Home = () => {
                   online scheduling tool to select an appointment time.
                 </li>
               </ul>
-              <Link to="/">
-                <button className="btn">Learn More</button>
-              </Link>
+    
             </div>
             <div className="relative z-10 xl:w-[800px] flex justify-end mt-[50px] lg:mt-0 w-3/4">
-              <video
-                autoPlay
-                loop
-                muted
-                className="rounded-lg w-1/2 border border-orange-700 shadow-orange-400 mx-2 my-4 "
-              >
-                <source src={Video3} type="video/mp4" />
-                Your browser does not support the video tags.
-              </video>
+            <Barner/>
             </div>
           </div>
         </div>
@@ -234,7 +227,7 @@ const Home = () => {
               expert rehabilitation care Doctors
             </p>
           </div>
-          <DoctorsList />
+          <TopDoctors />
         </div>
       </section>
 

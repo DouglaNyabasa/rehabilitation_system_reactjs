@@ -30,9 +30,10 @@ const Login = () => {
               onChange={handleInputChange}
             />
           </div>
+         
           <div className="mb-5">
             <input
-              className="w-full py-3 border-b border=[#0066ff51] focus:outline-none focus:border-b-primaryColor text-[18px] leading-7 text-headingColor placeholder:text-textColor  cursor-pointer"
+              className="w-full py-3 border-b border-red-800 focus:outline-none focus:border-b-primaryColor text-[18px] leading-7 text-headingColor placeholder:text-textColor  cursor-pointer"
               required
               type="password"
               placeholder="Password"
@@ -41,7 +42,7 @@ const Login = () => {
               onChange={handleInputChange}
             />
           </div>
-
+          
           <div className="mt-7">
             <button
               type="submit"

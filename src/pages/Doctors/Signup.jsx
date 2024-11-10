@@ -71,7 +71,7 @@ const submitHandler =async event=>{
 
               <div className="mb-5">
                 <input
-                  className="w-full py-3 pr-4 border-b border=[#0066ff51] focus:outline-none focus:border-b-primaryColor text-[18px] leading-7 text-headingColor placeholder:text-textColor  cursor-pointer"
+                  className="w-full py-3 pr-4 border-b border-red-700 focus:outline-none focus:border-b-primaryColor text-[18px] leading-7 text-headingColor placeholder:text-textColor  cursor-pointer"
                   required
                   type="email"
                   placeholder="Email"
@@ -80,9 +80,10 @@ const submitHandler =async event=>{
                   onChange={handleInputChange}
                 />
               </div>
+              <h4 className="text-red-600"> email is required </h4>
               <div className="mb-5">
                 <input
-                  className="w-full py-3 pr-4 border-b border=[#0066ff51] focus:outline-none focus:border-b-primaryColor text-[18px] leading-7 text-headingColor placeholder:text-textColor  cursor-pointer"
+                  className="w-full py-3 pr-4 border-b border-red-800 focus:outline-none focus:border-b-primaryColor text-[18px] leading-7 text-headingColor placeholder:text-textColor  cursor-pointer"
                   required
                   type="Password"
                   placeholder="Password"
@@ -91,6 +92,7 @@ const submitHandler =async event=>{
                   onChange={handleInputChange}
                 />
               </div>
+              <h4 className="text-red-600"> password is required </h4>
               <div className="mb-5 items-center justify-between">
                 <label className="text-headingColor font-bold text-[16px] leading-7 ">
                   Are you a:
