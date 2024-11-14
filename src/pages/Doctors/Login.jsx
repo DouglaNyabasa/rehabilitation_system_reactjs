@@ -1,16 +1,27 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+import { toast } from 'react-toastify';
+import { loginUser } from './authService';
+
+
+
 
 const Login = () => {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleLogin = async (e) => {
+      e.preventDefault();
+      try {
+          await loginUser(email, password);
+          toast.success("Login successful!");
+          navigate('/dashboard'); // Redirect to dashboard after successful login
+      } catch (error) {
+          toast.error(error.message);
+      }
   };
-
   return (
     <section className="px-5 lg:px-0">
       <div className="w-full max-w-[570px] mx-auto rounded-lg shadow-md md:p-10">
@@ -18,7 +29,7 @@ const Login = () => {
           Hello <span className="text-primaryColor ">Welcome</span> Back
         </h3>
 
-        <form action="" className="py-4 md:py-0">
+        <form onSubmit={handleLogin} className="py-4 md:py-0">
           <div className="mb-5">
             <input
               className="w-full py-3 border-b border=[#0066ff51] focus:outline-none focus:border-b-primaryColor text-[18px] leading-7 text-headingColor placeholder:text-textColor  cursor-pointer"
@@ -26,11 +37,11 @@ const Login = () => {
               type="email"
               placeholder="Enter Your Email"
               name="email"
-              value={FormData.email}
-              onChange={handleInputChange}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-         
+
           <div className="mb-5">
             <input
               className="w-full py-3 border-b border-red-800 focus:outline-none focus:border-b-primaryColor text-[18px] leading-7 text-headingColor placeholder:text-textColor  cursor-pointer"
@@ -38,11 +49,11 @@ const Login = () => {
               type="password"
               placeholder="Password"
               name="password"
-              value={FormData.password}
-              onChange={handleInputChange}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          
+
           <div className="mt-7">
             <button
               type="submit"

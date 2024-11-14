@@ -1,36 +1,67 @@
 import React, { useState } from "react";
 import avatar from "../../assets/images/doctor-img01.png";
 import signupImg from "../../assets/images/signup.gif";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
+import { registerUser } from './authService';
 
 const Signup = () => {
-
-  const [selectedFile, setSelectedFile] = useState(null)
- const [previewURL, setPreviewURL] = useState("")
   const [formData, setFormData] = useState({
     email: "",
-    fullName:"",
+    fullName: "",
     password: "",
-    photo: selectedFile,
+    photo: null,
     gender: "",
     role: "patient",
-    username: " "
-
+    username: ""
   });
 
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+  const navigate = useNavigate();
+
   const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
 
-  }
+  const handleFileInputChange = (event) => {
+    const file = event.target.files[0];
+    setFormData(prevData => ({
+      ...prevData,
+      photo: file
+    }));
+  };
 
-  const handleFileInputChange = async(event)=>{
-    const file = event.target.files[0]
-    console.log(file)
-  }
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    const { email, password } = formData;
+    
+    if (!email) {
+      setEmailError(true);
+      return;
+    } else {
+      setEmailError(false);
+    }
 
-const submitHandler =async event=>{
-  event.preventDetail()
-}
+    if (!password) {
+      setPasswordError(true);
+      return;
+    } else {
+      setPasswordError(false);
+    }
+
+    try {
+      await registerUser(email, password);
+      toast.success("Registration successful! Please log in.");
+      navigate('/login');
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
   return (
     <section className="px-5 xl:px-0">
@@ -45,75 +76,75 @@ const submitHandler =async event=>{
             <h3 className="text-headingColor text-[22px] leading-9 font-bold mb-10 ">
               Create an <span className="text-primaryColor">Account</span>
             </h3>
-            <form onSubmit={submitHandler}>
+            <form onSubmit={handleRegister}>
               <div className="mb-5">
                 <input
-                  className="w-full py-3 pr-4 border-b border=[#0066ff51] focus:outline-none focus:border-b-primaryColor text-[18px] leading-7 text-headingColor placeholder:text-textColor  cursor-pointer"
+                  className="w-full py-3 pr-4 border-b border=[#0066ff51] focus:outline-none focus:border-b-primaryColor text-[18px] leading-7 text-headingColor placeholder:text-textColor cursor-pointer"
                   required
                   type="text"
                   placeholder="Full name"
-                  name="Full Name"
-                  value={FormData.fullName}
+                  name="fullName"
+                  value={formData.fullName}
                   onChange={handleInputChange}
                 />
               </div>
               <div className="mb-5">
                 <input
-                  className="w-full py-3 pr-4 border-b border=[#0066ff51] focus:outline-none focus:border-b-primaryColor text-[18px] leading-7 text-headingColor placeholder:text-textColor  cursor-pointer"
+                  className="w-full py-3 pr-4 border-b border=[#0066ff51] focus:outline-none focus:border-b-primaryColor text-[18px] leading-7 text-headingColor placeholder:text-textColor cursor-pointer"
                   required
                   type="text"
                   placeholder="User name"
-                  name="alias"
-                  value={FormData.username}
+                  name="username"
+                  value={formData.username}
                   onChange={handleInputChange}
                 />
               </div>
 
               <div className="mb-5">
                 <input
-                  className="w-full py-3 pr-4 border-b border-red-700 focus:outline-none focus:border-b-primaryColor text-[18px] leading-7 text-headingColor placeholder:text-textColor  cursor-pointer"
+                  className={`w-full py-3 pr-4 border-b ${emailError ? 'border-red-700' : 'border=[#0066ff51]'} focus:outline-none focus:border-b-primaryColor text-[18px] leading-7 text-headingColor placeholder:text-textColor cursor-pointer`}
                   required
                   type="email"
                   placeholder="Email"
                   name="email"
-                  value={FormData.email}
+                  value={formData.email}
                   onChange={handleInputChange}
                 />
+                {emailError && <h4 className="text-red-600">Email is required</h4>}
               </div>
-              <h4 className="text-red-600"> email is required </h4>
               <div className="mb-5">
                 <input
-                  className="w-full py-3 pr-4 border-b border-red-800 focus:outline-none focus:border-b-primaryColor text-[18px] leading-7 text-headingColor placeholder:text-textColor  cursor-pointer"
+                  className={`w-full py-3 pr-4 border-b ${passwordError ? 'border-red-800' : 'border=[#0066ff51]'} focus:outline-none focus:border-b-primaryColor text-[18px] leading-7 text-headingColor placeholder:text-textColor cursor-pointer`}
                   required
-                  type="Password"
+                  type="password"
                   placeholder="Password"
-                  name="Password"
-                  value={FormData.password}
+                  name="password"
+                  value={formData.password}
                   onChange={handleInputChange}
                 />
+                {passwordError && <h4 className="text-red-600">Password is required</h4>}
               </div>
-              <h4 className="text-red-600"> password is required </h4>
               <div className="mb-5 items-center justify-between">
                 <label className="text-headingColor font-bold text-[16px] leading-7 ">
                   Are you a:
                   <select
                     name="role"
-                    value={FormData.role}
+                    value={formData.role}
                     onChange={handleInputChange}
-                    className="text-textColor font-semibold text-[15px] leading-7  px-4 py-3 focus:outline-none"
+                    className="text-textColor font-semibold text-[15px] leading-7 px-4 py-3 focus:outline-none"
                   >
                     <option value="patient">Patient</option>
                     <option value="doctor">Doctor</option>
                   </select>
                 </label>
 
-                <label className="text-headingColor font-bold text-[16px] leading-7  ">
+                <label className="text-headingColor font-bold text-[16px] leading-7">
                   Gender:
                   <select
                     name="gender"
-                    value={FormData.gender}
+                    value={formData.gender}
                     onChange={handleInputChange}
-                    className="text-textColor font-semibold text-[15px] leading-7  px-4 py-3 focus:outline-none"
+                    className="text-textColor font-semibold text-[15px] leading-7 px-4 py-3 focus:outline-none"
                   >
                     <option value="">Select</option>
                     <option value="male">Male</option>
@@ -137,25 +168,25 @@ const submitHandler =async event=>{
                     accept=".jpg, .png"
                     className="absolute top-0 left-0 w-full h-full cursor-pointer opacity-0"
                   />
-
                   <label htmlFor="customFile" className="absolute top-0 left-0 w-full h-full flex items-center px-[0.375rem] text-[15px] leading-6 overflow-hidden bg-[#0066ff46] text-headingColor font-semibold rounded-lg truncate cursor-pointer">
-                    Upload Photo</label>
+                    Upload Photo
+                  </label>
                 </div>
               </div>
               <div className="mt-7">
-            <button
-              type="submit"
-              className="w-full bg-primaryColor px-4 py-3 rounded-lg text-white text-[18px] leading-[30px]"
-            >
-              Sign Up
-            </button>
-          </div>
-          <p className="mt-5 text-textColor text-center">
-            Already have an account?{" "}
-            <Link to="/login" className="text-primaryColor font-medium ml-1">
-              Login
-            </Link>
-          </p>
+                <button
+                  type="submit"
+                  className="w-full bg-primaryColor px-4 py-3 rounded-lg text-white text-[18px] leading-[30px]"
+                >
+                  Sign Up
+                </button>
+              </div>
+              <p className="mt-5 text-textColor text-center">
+                Already have an account?{" "}
+                <Link to="/login" className="text-primaryColor font-medium ml-1">
+                  Login
+                </Link>
+              </p>
             </form>
           </div>
         </div>
@@ -165,3 +196,4 @@ const submitHandler =async event=>{
 };
 
 export default Signup;
+

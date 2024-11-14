@@ -14,13 +14,19 @@ import AddDoctor from "./pages/Admin/AddDoctor";
 
 
 
+
 function App() {
+
   // const {aToken} = useContext(AppContext)
   return  (
+  
+
+    
     <div>
       {/* <Login/> */}
       <ToastContainer />
       <Navbar />
+     
       <div className="flex items-start ">
         <Sidebar/>
         <Routes>
@@ -32,6 +38,7 @@ function App() {
         </Routes>
       </div>
     </div>
+
   );
 }
 

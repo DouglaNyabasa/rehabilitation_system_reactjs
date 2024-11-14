@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AppContext } from "../../context/AppContext";
 import { assets } from "../../assets/assets_frontend/assets";
 import RelatedDoctors from "../Doctors/RelatedDoctors";
@@ -16,6 +16,7 @@ const Appointment = () => {
   const [docSlots, setDocSlots] = useState([]);
   const [slotIndex, setSlotIndex] = useState(0);
   const [slotTime, setSlotTime] = useState('');
+  const navigate = useNavigate();
 
   const fetchDocInfo = async () => {
     const docInfo = doctors.find((doc) => doc._id === docId);
@@ -145,7 +146,7 @@ const Appointment = () => {
               ))
             }
           </div>
-          <button className="bg-primaryColor mt-5 text-white text-sm font-light px-14 py-3 my-6 rounded-full " >Book an Appointment</button>
+          <button onClick={()=> navigate('/addAppointment')} className="bg-primaryColor mt-5 text-white text-sm font-light px-14 py-3 my-6 rounded-full " >Book an Appointment</button>
         </div>
 
         <RelatedDoctors docId={docId} speciality={docInfo.speciality}/>
