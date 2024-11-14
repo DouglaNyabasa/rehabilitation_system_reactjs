@@ -23,20 +23,10 @@ function App() {
 
     
     <div>
-      {/* <Login/> */}
       <ToastContainer />
-      <Navbar />
-     
-      <div className="flex items-start ">
-        <Sidebar/>
-        <Routes>
-          <Route path="/" element={<></>}/>
-          <Route path="/admin-dashboard" element={<Dashboard/>}/>
-          <Route path="/all-appointments" element={<AllAppointment/>}/>
-          <Route path="/add-doctor" element={<AddDoctor/>}/>
-          <Route path="/doctor-list" element={<DoctorList/>}/>
-        </Routes>
-      </div>
+      <Login/> 
+      <Route path="/dashboard" element={<Dashboard/>}/>
+  
     </div>
 
   );

@@ -22,9 +22,17 @@ const navLinks = [
     path: "/contact",
     display: "Contact",
   },
+  
+ 
 ];
 
 const Header = () => {
+
+    const handleNavigate = () => {
+      // Open the admin dashboard in a new tab
+      window.open('http://localhost:5174/', '_blank');
+    };
+  
  
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
@@ -85,6 +93,16 @@ const Header = () => {
                 </figure>
               </Link>
             </div>
+            <div className="flex items-center gap-2 text-xs ">
+        <img
+          src={assets.logo1}
+          alt=""
+          className="w-36 sm:w-40 cursor-pointer "
+        />
+        <p onClick={handleNavigate} className=" cursor-pointer border px-2.5 py-0.5 rounded-full text-gray-600 border-gray-500  ">
+          Admin
+        </p>
+      </div>
 
             <div className="">
               {
@@ -99,6 +117,7 @@ const Header = () => {
                     </div>
                   </div>
                 </div>
+
                 : <button onClick={()=> navigate('/login')} className="bg-primaryColor py-2 px-6 text-white font-[600] h-[44px] flex items-center justify-center rounded-[50px]">
                 Create Account
               </button>
