@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Logo from "../assets/images/logo.png";
+import logo from "../assets/images/logo1.png";
 import { RiLinkedinFill } from "react-icons/ri";
 import {
   AiFillFacebook,
   AiFillTwitterCircle,
   AiOutlineInstagram,
 } from "react-icons/ai";
+import { assets } from "../assets/assets_frontend/assets";
 
 const socialLinks = [
   {
@@ -79,7 +80,7 @@ const Footer = () => {
      <div className="container">
         <div className="flex justify-between flex-col md:flex-row flex-wrap gap-[30px]">
           <div>
-            <img src={Logo} alt="" />
+            <img src={logo}  className="h-20" alt="" />
             <p className="text-[16px] leading-7 font-[400] text-textColor mt-4">
               Copyright @ {year} developed by Philani Mangezi all rights
               reserved.

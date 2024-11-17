@@ -13,6 +13,8 @@ import NewsAndUpdates from '../components/NewsAndUpdate'
 import AddAppointment from '../pages/Doctors/AddAppointment'
 import YouTubeVideos from '../pages/UserDashboard/Youtube/YoutubeVideo'
 import UserSidebar from '../../src/pages/UserDashboard/UserSidebar'
+import DoctorsAbout from '../pages/Doctors/DoctorsAbout'
+import UserDashboard from '../pages/UserDashboard/UserDashboard'
 
 
 
@@ -22,17 +24,27 @@ const Routers = () => {
     <Routes>
       <Route path='/' element={<Home/>} />
       <Route path='/home' element={<Home/>} />
-      <Route path='/aiChatbot' element={<AIchatbot/>} />
-      <Route path='/addAppointment' element={<AddAppointment/>} />
+     
+     
       <Route path='/appointment/:docId' element={<Appointment/>} />
       <Route path='/login' element={<Login/>} />
       <Route path='/register' element={<Signup/>} />
       <Route path='/contact' element={<Contacts/>} />
-      <Route path='/newsArticle' element={<NewsAndUpdates/>} />
+      
       <Route path='/my-profile' element={<Profile/>} />
       <Route path='/my-appointment' element={<MyAppointment/>} />
-      <Route path='/youtube' element={<YouTubeVideos/>} />
+    
       <Route path='/usersidebar' element={<UserSidebar/>} />
+      <Route path='/aboutUs' element={<DoctorsAbout/>} />
+
+      {/* User routes */}
+
+      <Route path='/youtube' element={<YouTubeVideos/>} />
+      <Route path='/addAppointment' element={<AddAppointment/>} />
+      <Route path='/newsArticle' element={<NewsAndUpdates/>} />
+      <Route path='/aiChatbot' element={<AIchatbot/>} />
+      <Route path='/user-dashboard' element={<UserDashboard/>} />
+      
       
 
  

@@ -12,16 +12,23 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  // const handleLogin = async (e) => {
+  //     e.preventDefault();
+  //     try {
+  //         await loginUser(email, password);
+  //         toast.success("Login successful!");
+  //         navigate('/user-dashboard'); // Redirect to dashboard after successful login
+  //     } catch (error) {
+  //         toast.error(error.message);
+  //     }
+  // };
+
   const handleLogin = async (e) => {
-      e.preventDefault();
-      try {
-          await loginUser(email, password);
-          toast.success("Login successful!");
-          navigate('/dashboard'); // Redirect to dashboard after successful login
-      } catch (error) {
-          toast.error(error.message);
-      }
-  };
+    e.preventDefault();
+
+        navigate('/user-dashboard'); // Redirect to dashboard after successful login
+
+};
   return (
     <section className="px-5 lg:px-0">
       <div className="w-full max-w-[570px] mx-auto rounded-lg shadow-md md:p-10">

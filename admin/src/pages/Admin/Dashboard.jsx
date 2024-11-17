@@ -6,6 +6,7 @@ import { Route, Routes } from 'react-router-dom'
 import AllAppointment from './AllAppointment'
 import AddDoctor from './AddDoctor'
 import DoctorList from './DoctorList'
+import AdminDashboard from './AdminDashboard'
 
 const Dashboard = () => {
   return (
@@ -15,8 +16,9 @@ const Dashboard = () => {
      
       <div className="flex items-start ">
         <Sidebar/>
+       
         <Routes>
-          <Route path="/" element={<></>}/>
+          <Route path="/admin-dashboard" element={<AdminDashboard/>}/>
           
           <Route path="/all-appointments" element={<AllAppointment/>}/>
           <Route path="/add-doctor" element={<AddDoctor/>}/>

@@ -15,37 +15,39 @@ import AddDoctor from "./pages/Admin/AddDoctor";
 
 
 
-function App() {
+// function App() {
 
-  // const {aToken} = useContext(AppContext)
-  return  (
+//   const {aToken} = useContext(AppContext)
+//   return  (
   
 
     
-    <div>
-      <ToastContainer />
-      <Login/> 
-      <Route path="/dashboard" element={<Dashboard/>}/>
-  
-    </div>
-
-  );
-}
-
-export default App;
-
-
-// function App() {
-//   // const {aToken} = useContext(AppContext)
-//   return aToken ? (
 //     <div>
-//       {/* <Login/> */}
 //       <ToastContainer />
-//       <Navbar />
-//       <div></div>
-//     </div> 
-   
-//   )  :<><Login/> <ToastContainer/> </>
+//       <Login/> 
+//       <Route path="/dashboard" element={<Dashboard/>}/>
+  
+//     </div>
+
+//   );
 // }
 
 // export default App;
+
+
+function App() {
+  // const {aToken} = useContext(AppContext)
+  return  (
+    <div>
+      {/* <Login/> */}
+      <ToastContainer />
+    
+      <Dashboard/>
+      
+    </div> 
+   
+  ) 
+  //  :<><Login/> <ToastContainer/> </>
+}
+
+export default App;
