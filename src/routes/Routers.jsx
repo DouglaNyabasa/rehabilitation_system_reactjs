@@ -15,6 +15,7 @@ import YouTubeVideos from '../pages/UserDashboard/Youtube/YoutubeVideo'
 import UserSidebar from '../../src/pages/UserDashboard/UserSidebar'
 import DoctorsAbout from '../pages/Doctors/DoctorsAbout'
 import UserDashboard from '../pages/UserDashboard/UserDashboard'
+import TopDoctors from '../pages/Doctors/TopDoctors'
 
 
 
@@ -36,6 +37,8 @@ const Routers = () => {
     
       <Route path='/usersidebar' element={<UserSidebar/>} />
       <Route path='/aboutUs' element={<DoctorsAbout/>} />
+      <Route path='/topDoctors' element={   <TopDoctors />} />
+   
 
       {/* User routes */}
 

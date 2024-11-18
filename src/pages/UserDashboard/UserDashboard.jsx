@@ -5,6 +5,7 @@ import YouTubeVideos from "./Youtube/YoutubeVideo";
 
 import NewsAndUpdates from "../../components/NewsAndUpdate";
 import AIchatbot from "../../components/AIchatbot";
+import Profile from "../MyProfile/Profile";
 
 const UserDashboard = () => {
   return (
@@ -17,6 +18,7 @@ const UserDashboard = () => {
           <Route path="/newsArticle" element={<NewsAndUpdates />} />
           <Route path="/aiChatbot" element={<AIchatbot />} />
           <Route path="/user-dashboard" element={<UserDashboard />} />
+          <Route path="/my-profile" element={<Profile />} />
         </Routes>
       </div>
     </div>

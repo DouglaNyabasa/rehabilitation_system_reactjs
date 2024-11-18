@@ -1,5 +1,8 @@
 import { NavLink } from "react-router-dom";
 import { assets } from "../../assets/assets_frontend/assets.js";
+import robot from '../../assets/assets_frontend/robot-head.png'
+import news from '../../assets/assets_frontend/world-news.png'
+import youtube from '../../assets/assets_frontend/youtube.png'
 
 const UserSidebar = () => {
   return (
@@ -26,7 +29,7 @@ const UserSidebar = () => {
             }
             to={"/newsArticle"}
           >
-            <img src={assets.info_icon} alt="" />
+            <img src={news} alt="" className="h-10 rounded-full" />
             <p>News And Articles </p>
           </NavLink>
 
@@ -38,7 +41,7 @@ const UserSidebar = () => {
             }
             to={"/youtube"}
           >
-            <img src={assets.menu_icon} alt="" />
+            <img src={youtube} alt="" className="h-10 rounded-full" />
             <p>Youtube Lessons</p>
           </NavLink>
 
@@ -50,9 +53,14 @@ const UserSidebar = () => {
             }
             to={"/aiChatbot"}
           >
-            <img src={assets.people_icon} alt="" />
+            <img src={robot} alt="" className="h-10 rounded-full" />
             <p>AI Chat Bot</p>
           </NavLink>
+
+          <NavLink className={({isActive})=> `flex items-center gap-3 py-3.5 px-3 md:min-w-72 cursor-pointer ${isActive ? 'bg-[#F2F3FF] border-r-4 border-primary':''}`} to={'/topDoctors'}>
+                <img src={assets.arrow_icon} alt="" />
+                <p>Book Appointments</p>
+            </NavLink>
         </ul>
       }
     </div>

@@ -3,7 +3,8 @@ import avatar from "../../assets/images/doctor-img01.png";
 import signupImg from "../../assets/images/signup.gif";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
-import { registerUser } from './authService';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -38,7 +39,7 @@ const Signup = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    const { email, password } = formData;
+    const { email, password, fullName, username, gender } = formData;
     
     if (!email) {
       setEmailError(true);
@@ -55,7 +56,20 @@ const Signup = () => {
     }
 
     try {
-      await registerUser(email, password);
+      const auth = getAuth();
+      const db = getFirestore();
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      // Save additional user details to Firestore
+      await setDoc(doc(db, "users", user.uid), {
+        fullName: fullName,
+        username: username,
+        email: email,
+        gender: gender,
+        role: formData.role,
+      });
+
       toast.success("Registration successful! Please log in.");
       navigate('/login');
     } catch (error) {
@@ -125,19 +139,6 @@ const Signup = () => {
                 {passwordError && <h4 className="text-red-600">Password is required</h4>}
               </div>
               <div className="mb-5 items-center justify-between">
-                <label className="text-headingColor font-bold text-[16px] leading-7 ">
-                  Are you a:
-                  <select
-                    name="role"
-                    value={formData.role}
-                    onChange={handleInputChange}
-                    className="text-textColor font-semibold text-[15px] leading-7 px-4 py-3 focus:outline-none"
-                  >
-                    <option value="patient">Patient</option>
-                    <option value="doctor">Doctor</option>
-                  </select>
-                </label>
-
                 <label className="text-headingColor font-bold text-[16px] leading-7">
                   Gender:
                   <select
@@ -196,4 +197,3 @@ const Signup = () => {
 };
 
 export default Signup;
-
