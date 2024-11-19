@@ -1,8 +1,6 @@
-import React, { useContext, useState } from "react";
-import { assets } from "../../assets/assets_admin/assets";
-import { AdminContext } from "../../context/AdminContext";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
-import { db } from "../../../../src/firebase"; // Import Firestore
+import { db } from "../../../../src/firebase"; // Ensure this path is correct
 import { collection, addDoc } from "firebase/firestore"; // Import Firestore functions
 
 const AddDoctor = () => {
@@ -17,8 +15,6 @@ const AddDoctor = () => {
   const [address1, setAddress1] = useState("");
   const [address2, setAddress2] = useState("");
 
-  const { aToken } = useContext(AdminContext); // Assuming aToken is used for auth elsewhere
-
   const onSubmitHandler = async (event) => {
     event.preventDefault();
 
@@ -27,7 +23,7 @@ const AddDoctor = () => {
       const doctorData = {
         name,
         email,
-        password,
+        password, // Consider hashing passwords before storing
         experience,
         fees: Number(fees),
         about,
@@ -40,24 +36,24 @@ const AddDoctor = () => {
       };
 
       // Add the doctor to Firestore
-      const docRef = await addDoc(collection(db, "user"), doctorData);
+      const docRef = await addDoc(collection(db, "users"), doctorData); // Ensure the collection name is correct
 
       if (docRef.id) {
         toast.success("Doctor added successfully!");
         // Reset form fields
         setName('');
-        setPassword('');
         setEmail('');
+        setPassword('');
+        setExperience('1 Year');
+        setFees('');
+        setAbout('');
+        setDegree('');
         setAddress1('');
         setAddress2('');
-        setDegree('');
-        setAbout('');
-        setFees('');
-        setExperience('1 Year'); // Reset experience to default value
-        setSpeciality('General Physician'); // Reset speciality to default value
+        setSpeciality('General Physician');
       }
     } catch (error) {
-      toast.error(error.message);
+      toast.error("Error adding doctor: " + error.message);
       console.log(error);
     }
   };

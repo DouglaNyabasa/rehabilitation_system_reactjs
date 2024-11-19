@@ -119,7 +119,7 @@ const Header = () => {
                 // </div>
 
                  <button onClick={()=> navigate('/login')} className="bg-primaryColor py-2 px-6 text-white font-[600] h-[44px] flex items-center justify-center rounded-[50px]">
-                Create Account
+                Log In
               </button>
               }
             </div>
