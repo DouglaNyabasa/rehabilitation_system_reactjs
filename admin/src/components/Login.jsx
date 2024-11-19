@@ -1,12 +1,11 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
-import { AdminContext } from "../context/AdminContext";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'; // Import Toastify styles
 
 const Login = () => {
   const [state, setState] = useState("Admin");
-  const { setAToken } = useContext(AdminContext);
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate(); // Initialize useNavigate
@@ -22,13 +21,12 @@ const Login = () => {
     if (state === 'Admin') {
       if (email === adminEmail && password === adminPassword) {
         // Simulate a successful login
-        const token = "your_generated_token"; // Replace with actual token if needed
-        localStorage.setItem('aToken', token);
-        setAToken(token);
+    // Replace with actual token if needed
+     
         toast.success("Login successful!"); // Success toast
 
         // Navigate to admin dashboard
-        navigate('/dashboard'); // Use navigate to route to the dashboard
+        navigate('/admin-dashboard'); // Use navigate to route to the dashboard
       } else {
         toast.error("Invalid email or password"); // Error toast for invalid credentials
       }
@@ -81,8 +79,6 @@ const Login = () => {
   );
 };
 
-// Make sure to wrap your app in ToastContainer in your main file (e.g., App.js)
-import { ToastContainer } from 'react-toastify';
 
 
 

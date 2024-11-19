@@ -22,7 +22,13 @@ const Login = () => {
           toast.error(error.message);
       }
   };
+//   const handleLogin = async (e) => {
+//     e.preventDefault();
 
+//         toast.success("Login successful!");
+//         navigate('/user-dashboard'); // Redirect to dashboard after successful login
+
+// };
 
   return (
     <section className="px-5 lg:px-0">

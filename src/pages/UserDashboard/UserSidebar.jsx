@@ -61,6 +61,10 @@ const UserSidebar = () => {
                 <img src={assets.arrow_icon} alt="" />
                 <p>Book Appointments</p>
             </NavLink>
+            <NavLink className={({isActive})=> `flex items-center gap-3 py-3.5 px-3 md:min-w-72 cursor-pointer ${isActive ? 'bg-[#F2F3FF] border-r-4 border-primary':''}`} to={'/my-profile'}>
+                <img src={assets.profile_pic} className='h-12 rounded-full' alt="" />
+                <p>Profile</p>
+            </NavLink>
         </ul>
       }
     </div>

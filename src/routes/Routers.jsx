@@ -46,7 +46,7 @@ const Routers = () => {
       <Route path='/addAppointment' element={<AddAppointment/>} />
       <Route path='/newsArticle' element={<NewsAndUpdates/>} />
       <Route path='/aiChatbot' element={<AIchatbot/>} />
-      <Route path='/user-dashboard' element={<UserDashboard/>} />
+      <Route path='/user-dashboard/*' element={<UserDashboard/>} />
       
       
 
